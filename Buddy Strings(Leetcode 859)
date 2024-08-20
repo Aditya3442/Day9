@@ -1,0 +1,34 @@
+class Solution {
+    public static boolean checkFreq(String s){
+        int arr[]=new int[26];
+        for(char ch:s.toCharArray()){
+            arr[ch-'a']++;
+        }
+        for(int i=0;i<26;i++){
+            if(arr[i]>1)
+                return true;
+        }
+        return false;
+    }
+    public boolean buddyStrings(String s, String g) {
+        int n1=s.length();
+        int n2=g.length();
+        if(n1!=n2)
+            return false;
+        if(s.equals(g))
+            return checkFreq(s);
+        List<Integer> list=new ArrayList<>();
+        for(int i=0;i<n1;i++){
+            if(s.charAt(i)!=g.charAt(i)){
+                list.add(i);
+            }
+        } 
+        if(list.size()==2){
+            return (s.charAt(list.get(0))==g.charAt(list.get(1))) && (s.charAt(list.get(1))==g.charAt(list.get(0)));
+        }
+        else{
+            return false;
+        }
+        
+    }
+}
